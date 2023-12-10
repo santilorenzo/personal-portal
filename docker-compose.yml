@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  # Laravel Application
+  app:
+    image: webdevops/php-nginx:8.2
+    container_name: laravel_app
+    depends_on:
+      - mysql
+      - redis
+    environment:
+      - WEB_DOCUMENT_ROOT=/app/public
+      - WEB_ALIAS_DOMAIN=${APP_URL}
+    volumes:
+      - .:/app
+    ports:
+      - "${APP_PORT:-9000}:80"
+    networks:
+      - laravel_network
+
+  # MySQL Database
+  mysql:
+    image: mysql:latest
+    container_name: laravel_mysql
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    ports:
+      - "${FORWARD_DB_PORT}:3306"
+    networks:
+      - laravel_network
+
+  # Redis
+  redis:
+    image: redis:latest
+    container_name: laravel_redis
+    ports:
+      - "${REDIS_PORT}:6379"
+    networks:
+      - laravel_network
+
+networks:
+  laravel_network:
+    driver: bridge
