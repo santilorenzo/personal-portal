@@ -5,6 +5,15 @@ import './bootstrap';
  */
 import * as bootstrap from 'bootstrap';
 
+import '@fortawesome/fontawesome-free/js/fontawesome';
+import '@fortawesome/fontawesome-free/js/solid';
+import '@fortawesome/fontawesome-free/js/regular';
+
+/**
+ * Trix
+ */
+import Trix from 'trix';
+
 /**
  * Template
  */

@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->string('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('picture');
-            $table->rememberToken();
+        Schema::create('diary_posts', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->text('body')->nullable()->default(null);
+            $table->string('slug')->unique();
+            $table->timestamp('published_at')->nullable()->default(null);
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('diary_posts');
     }
 };
