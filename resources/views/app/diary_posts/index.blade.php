@@ -18,6 +18,7 @@
       <tr>
         <th>Titolo</th>
         <th>Creato il</th>
+        <th>Pubblicato il</th>
         <th>Azioni</th>
       </tr>
     </thead>
@@ -25,7 +26,8 @@
       @foreach ($diaryPosts as $diaryPost)
       <tr onclick="window.location.href = '{{ route('diary_posts.show', $diaryPost) }}';" style="cursor: pointer">
         <td>{{ $diaryPost->title }}</td>
-        <td>{{ $diaryPost->created_at }}</td>
+        <td>{{ $diaryPost->created_at->format('d/m/Y') }}</td>
+        <td>{{ !empty($diaryPost->published_at) ? $diaryPost->published_at->format('d/m/Y') : '' }}</td>
         <td class="d-flex">
           <a href="{{ route('diary_posts.edit', $diaryPost) }}" class="btn btn-primary btn-sm me-1">
             <i class="fa fa-edit"></i>

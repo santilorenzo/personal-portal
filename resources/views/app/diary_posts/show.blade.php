@@ -35,7 +35,7 @@
     <div class="col-md-12">
     <h1 class="post-title">{{ $diaryPost->title }}</h1>
     <div class="post-date">
-      {{ $diaryPost->created_at->format('d/m/Y') }}
+      {{ $diaryPost->published_at->format('d/m/Y') }}
     </div>
     <div class="post-body">
       {!! $diaryPost->body !!}

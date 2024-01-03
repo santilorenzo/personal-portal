@@ -47,7 +47,11 @@ class DiaryPostController extends Controller
 
         $diaryPost = DiaryPost::create($validated);
 
-        return redirect()->route('diary_posts.show', $diaryPost);
+        if ($diaryPost->isPublished()) {
+            return redirect()->route('diary_posts.show', $diaryPost);
+        } else {
+            return redirect()->route('diary_posts.edit', $diaryPost);
+        }
     }
 
     /**
