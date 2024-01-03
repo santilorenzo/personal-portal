@@ -2,11 +2,11 @@
 
 @section('content')
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
   body, h1, h2, h3, h4, h5, h6, p, a, li, td, th, tr {
     font-family: 'Lora', serif;
   }
-  .container {
+  .page.container {
     max-width: 800px;
     padding-top: 50px;
     position: relative;
@@ -27,15 +27,10 @@
     font-size: 20px;
     line-height: 1.5;
     text-align: justify;
-  }
-  .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 20px;
+    margin-bottom: 50px;
   }
 </style>
-<div class="container">
+<div class="page container">
   <div class="row">
     <div class="col-md-12">
     <h1 class="post-title">{{ $diaryPost->title }}</h1>
@@ -47,17 +42,21 @@
     </div>
     </div>
   </div>
-  <div class="footer"> <!-- Add this section -->
-    <div class="row mt-3">
-      <div class="col-md-12">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('diary_posts.index') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('diary_posts.show', $diaryPost) }}">{{ $diaryPost->title }}</a></li>
-          </ol>
-        </nav>
+
+  <footer class="footer bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{{ route('diary_posts.index') }}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('diary_posts.show', $diaryPost) }}">{{ $diaryPost->title }}</a></li>
+            </ol>
+          </nav>
+        </div>
       </div>
     </div>
-  </div> <!-- End of footer section -->
+  </footer>
 </div>
 @endsection
+
